@@ -5,17 +5,20 @@ Added Just to be safe.
 
 CREATE TABLE departments (
 	dept_no VARCHAR(10) PRIMARY KEY,
-	dept_name VARCHAR(255) NOT NULL
+	dept_name VARCHAR(255) NOT NULL,
 );
 	
 CREATE TABLE dept_emp (
 	emp_no SERIAL PRIMARY KEY,
-	dept_no VARCHAR(10) NOT NULL
+	dept_no VARCHAR(10) NOT NULL, 
+    dept_no_fk REFRENCES departments(dept_no)
+    
 );
 
 CREATE TABLE dept_manager (
 	dept_no VARCHAR(10) PRIMARY KEY,
-	emp_no INT NOT NULL
+	emp_no INT NOT NULL,
+    emp_no_fk REFRENCES dept_emp(emp_no)
 );
 
 CREATE TABLE employees (
@@ -26,6 +29,7 @@ CREATE TABLE employees (
 	last_name VARCHAR(100),
 	sex VARCHAR(5),
 	hire_date VARCHAR(100)
+    emp_no_fk REFRENCES dept_emp(emp_no)
 );
 	
 CREATE TABLE salaries (

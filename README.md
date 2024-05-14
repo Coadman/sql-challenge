@@ -1,45 +1,41 @@
-Added Just to be safe.
-
-
 <!-- Creating Tables -->
-
 CREATE TABLE departments (
 	dept_no VARCHAR(10) PRIMARY KEY,
-	dept_name VARCHAR(255) NOT NULL,
+	dept_name VARCHAR(255) NOT NULL
 );
 	
 CREATE TABLE dept_emp (
-	emp_no SERIAL PRIMARY KEY,
-	dept_no VARCHAR(10) NOT NULL, 
-    dept_no_fk REFRENCES departments(dept_no)
-    
-);
-
-CREATE TABLE dept_manager (
-	dept_no VARCHAR(10) PRIMARY KEY,
 	emp_no INT NOT NULL,
-    emp_no_fk REFRENCES dept_emp(emp_no)
+	dept_no VARCHAR(10) NOT NULL,
+	PRIMARY KEY (emp_no, dept_no),  -- Composite primary key
+    FOREIGN KEY (dept_no) REFERENCES departments(dept_no)
 );
 
+    
+CREATE TABLE dept_manager (
+    dept_no VARCHAR(10),
+    emp_no INT NOT NULL,
+    FOREIGN KEY (dept_no) REFERENCES departments(dept_no)  -- Assuming 'departments' is the referenced table
+);
+
+
+-- Create the employees table
 CREATE TABLE employees (
-	emp_no SERIAL PRIMARY KEY,
-	title_id VARCHAR(100),
-	birth_date VARCHAR(100),
-	first_name VARCHAR(100),
-	last_name VARCHAR(100),
-	sex VARCHAR(5),
-	hire_date VARCHAR(100)
-    emp_no_fk REFRENCES dept_emp(emp_no)
+    emp_no INT PRIMARY KEY,
+    title_id VARCHAR(100),
+    birth_date DATE,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    sex CHAR(1),
+    hire_date DATE
 );
 	
 CREATE TABLE salaries (
-	emp_no SERIAL PRIMARY KEY,
+	emp_no INT PRIMARY KEY,
 	salary INT NOT NULL
 );
 
 CREATE TABLE titles (
-	title_id SERIAL PRIMARY KEY,
+	title_id VARCHAR(100) PRIMARY KEY,
 	title VARCHAR(100)
 );
-
-

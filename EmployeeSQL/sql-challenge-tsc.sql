@@ -1,3 +1,5 @@
+-- Table Schema Creation
+
 CREATE TABLE departments (
 	dept_no VARCHAR(255) SERIAL PRIMARY KEY,
 	dept_name VARCHAR(100) NOT NULL

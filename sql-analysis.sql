@@ -47,3 +47,4 @@ SELECT COUNT(last_name) AS frequency, last_name
 FROM employees
 GROUP BY last_name
 ORDER BY COUNT(last_name) DESC;
+
